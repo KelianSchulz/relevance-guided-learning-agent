@@ -15,7 +15,7 @@ texts = [a["title"] + ". " + a["content"] for a in articles]
 
 embeddings = model.encode(texts)
 
-target_interest = "Reinforcement Learning"
+target_interest = "Machine Learning"
 interest_vec = model.encode([target_interest])[0]
 
 
