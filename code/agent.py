@@ -24,6 +24,16 @@ def cosine_similarity(a, b):
 
 scores = [cosine_similarity(e,interest_vec) for e in embeddings]
 
+agent_memory = []
 top_indices = np.argsort(scores)[-5:][::-1]
 for i in top_indices:
     print(f"Score: {scores[i]:.3f} | Title: {articles[i]['title']}")
+    if scores[i] > 0.5:
+        agent_memory.append(articles[i])
+
+
+with open("data/agent_memory.json", "w", encoding="utf-8") as f:
+    json.dump(agent_memory, f, ensure_ascii=False, indent=4)
+
+
+
