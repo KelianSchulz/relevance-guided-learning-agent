@@ -1,4 +1,4 @@
-# Self-Guided Learning Agent
+# relevance-guided-learning-agent
 
 This project explores the idea of a minimal AI system that **selects what it wants to learn** from a set of documents – based on a *defined interest*.
 
