@@ -1,39 +1,10 @@
 import json
-from sentence_transformers import SentenceTransformer
-import numpy as np
-
-with open("data/articles.json", "r", encoding="utf-8") as f:
-    articles = json.load(f)
-
-# for article in articles:
-#     print(article["title"])
-#Load Model
-model = SentenceTransformer('all-MiniLM-L6-v2')
-
-#Comnbine Title with Content
-texts = [a["title"] + ". " + a["content"] for a in articles]
-
-embeddings = model.encode(texts)
-
-target_interest = "Machine Learning"
-interest_vec = model.encode([target_interest])[0]
+from embedding import embed_texts, embed_interest, compute_scores
+from memory import filter_relevant_articles, save_memory
 
 
-def cosine_similarity(a, b):
-    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
-
-scores = [cosine_similarity(e,interest_vec) for e in embeddings]
-
-agent_memory = []
-top_indices = np.argsort(scores)[-5:][::-1]
-for i in top_indices:
-    print(f"Score: {scores[i]:.3f} | Title: {articles[i]['title']}")
-    if scores[i] > 0.5:
-        agent_memory.append(articles[i])
-
-
-with open("data/agent_memory.json", "w", encoding="utf-8") as f:
-    json.dump(agent_memory, f, ensure_ascii=False, indent=4)
-
-
-
+def run_agent(data_path, interest, threshold = 0.5):
+    #Load Texts
+    with open(data_path,"r", encoding="utf-8") as f:
+        articles = json.load(f)
+    texts = [a["title"] + ". " + a["content"] for a in articles]
