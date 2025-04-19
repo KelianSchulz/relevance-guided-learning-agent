@@ -57,7 +57,7 @@ articles.json → [score] → agent_memory.json
                           ↓
          [explanation + visualization]
 
-
+```
 ## 5. Example Output
 
 ```text
