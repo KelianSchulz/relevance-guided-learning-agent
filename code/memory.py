@@ -5,7 +5,7 @@ def filter_relevant_articles(articles, scores, threshold=0.5):
     for i in range(len(scores)):
         if scores[i] > threshold:
             article = articles[i].copy()
-            article["score"] = scores[i]
+            article["score"] = float(scores[i])
             memory.append(article)
     return memory
 
