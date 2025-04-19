@@ -3,20 +3,21 @@
 """
 expansion.py
 
-Dieses Modul erweitert das bestehende (angepasste) Gedächtnis eines KI-Agenten,
-indem es nach einem Zielwechsel neue, noch nicht gespeicherte relevante Texte aus der Artikelsammlung identifiziert
-und dem Gedächtnis hinzufügt.
+This module expands the existing (adapted) memory of an AI agent
+by identifying and adding new, relevant texts from the article collection
+that have not yet been stored, after a change in the agent's goal.
 
 Input:
-- agent_memory_adapted.json (aktuelles, angepasstes Wissen)
-- articles.json (gesamte Textbasis)
-- neues Ziel (als String)
+- agent_memory_adapted.json (current, adapted knowledge)
+- articles.json (complete text base)
+- new goal (as a string)
 
 Output:
-- agent_memory_expanded.json (erweitertes Gedächtnis für neues Ziel)
+- agent_memory_expanded.json (expanded memory for the new goal)
 
-Phase 4 des Projekts: Zielwandel + aktives Dazulernen.
+Phase 4 of the project: Goal shift + active learning.
 """
+
 
 import json
 from embedding import embed_interest, embed_texts, compute_scores, cosine_similarity

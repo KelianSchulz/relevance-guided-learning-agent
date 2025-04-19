@@ -38,27 +38,26 @@ plt.show()
 
 from sklearn.manifold import TSNE
 from embedding import embed_texts
-# 1. Lade alle Artikel
+
 with open("data/articles.json", "r", encoding="utf-8") as f:
     all_articles = json.load(f)
 
-# 2. Extrahiere Titel des gelernten Gedächtnisses
+
 kept_titles = set([entry["title"] for entry in memory])
 
-# 3. Trenne in behaltene und ignorierte Texte
+
 texts_kept = [a["title"] + ". " + a["content"] for a in all_articles if a["title"] in kept_titles]
 texts_unseen = [a["title"] + ". " + a["content"] for a in all_articles if a["title"] not in kept_titles]
 titles_kept = [a["title"] for a in all_articles if a["title"] in kept_titles]
 titles_unseen = [a["title"] for a in all_articles if a["title"] not in kept_titles]
 
-# 4. Combine und embedde
 texts_combined = texts_kept + texts_unseen
 titles_combined = titles_kept + titles_unseen
 labels = ['Gelernt'] * len(texts_kept) + ['Ignoriert'] * len(texts_unseen)
 
 embeddings = embed_texts(texts_combined)
 
-# 5. t-SNE-Projektion
+
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 
@@ -72,7 +71,7 @@ for i, (x, y) in enumerate(embeddings_2d):
     plt.scatter(x, y, color=color, label=labels[i] if i == 0 or labels[i] != labels[i - 1] else "")
     plt.text(x + 0.3, y, titles_combined[i], fontsize=8)
 
-plt.title("t-SNE: Vergleich gespeicherte vs. ignorierte Texte")
+plt.title("t-SNE: saved vs ignored texts")
 plt.xlabel("Dimension 1")
 plt.ylabel("Dimension 2")
 plt.grid(True, linestyle='--', alpha=0.5)

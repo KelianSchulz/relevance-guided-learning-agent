@@ -45,7 +45,7 @@ if __name__ == "__main__":
 # Speichern
 save_memory(expanded, path="data/agent_memory_expanded.json")
 
-print("\n🔎 Erklärungen für das finale Gedächtnis:\n")
+print("\n🔎 Explanation for final memory:\n")
 explain_memory(
     memory_path="data/agent_memory_expanded.json",
     goal=goal

@@ -1,18 +1,17 @@
 """
 explanation.py
 
-Dieses Modul erzeugt einfache, nachvollziehbare Begründungen für die
-Auswahl gespeicherter Texte im Agentengedächtnis – auf Basis ihrer
-semantischen Ähnlichkeit zum Ziel.
+This module generates simple, understandable explanations for the
+selection of stored texts in the agent’s memory – based on their
+semantic similarity to the goal.
 
-Ziel: interpretierbares Verhalten & Transparenz.
+Objective: interpretable behavior & transparency.
 """
 from embedding import embed_interest, compute_scores, embed_texts, cosine_similarity
 
-
 import json
 def explain_memory(memory_path, goal):
-    with open (memory_path, "r", encoding="utf-8") as f:
+    with open(memory_path, "r", encoding="utf-8") as f:
         memory = json.load(f)
 
     goal_vec = embed_interest(goal)
@@ -21,23 +20,17 @@ def explain_memory(memory_path, goal):
     embeddings = embed_texts(texts)
     scores = compute_scores(embeddings, goal_vec)
 
-    print(f"Erklärung der Gedächtniswahl: Ich habe folgende Texte ausgewählt, weil sie einen Cosine score >= 0.5 haben:")
+    print(f"Explanation of memory selection: I chose the following texts because they have a cosine score >= 0.5:")
     for i in range(len(memory)):
         print(type(embeddings[i]), type(goal_vec))
         score = cosine_similarity(embeddings[i], goal_vec)
         print(f"🧠 {titles[i]}")
-        print(f"→ Relevanz: {scores[i]:.3f}")
+        print(f"→ Relevance: {scores[i]:.3f}")
         if score > 0.7:
-            print("→ Sehr starke semantische Verbindung zum Ziel.\n")
+            print("→ Very strong semantic connection to the goal.\n")
         elif score > 0.5:
-            print("→ Gute Übereinstimmung mit dem Ziel.\n")
+            print("→ Good match with the goal.\n")
         elif score > 0.3:
-            print("→ Leichte thematische Nähe, aber nicht dominant.\n")
+            print("→ Slight thematic proximity, but not dominant.\n")
         else:
-            print("→ Kaum relevante Verbindung. (Warum wurde das gespeichert? Höaääöä)\n")
-
-
-
-
-            #Notiz:
-            #Warum ist der Score anders als in der expansion????!?!?!!?!?!?!!?!?!?!?!!?!?!?!?!?!
+            print("→ Hardly any relevant connection. (Why was this stored?)\n")
