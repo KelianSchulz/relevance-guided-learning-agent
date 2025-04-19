@@ -61,16 +61,16 @@ articles.json → [score] → agent_memory.json
 ## 5. Example Output
 
 ```text
-Erklärung der Gedächtniswahl: Ich habe folgende Texte ausgewählt, weil sie einen Cosine score >= 0.5 haben:
+Explanation of memory selection: I chose the following texts because they have a cosine score >= 0.5:
 
 🧠 Neural Networks  
-→ Relevanz: 0.576  
-→ Gute Übereinstimmung mit dem Ziel.
+→ Relevance: 0.576  
+→ Good match with the goal.
 
 🧠 Deep Learning  
-→ Relevanz: 0.541  
-→ Gute Übereinstimmung mit dem Ziel.
+→ Relevance: 0.541  
+→ Good match with the goal.
 
 🧠 Artificial Intelligence  
-→ Relevanz: 0.658  
-→ Sehr starke semantische Verbindung zum Ziel.
+→ Relevance: 0.658  
+→ Very strong semantic connection to the goal.
