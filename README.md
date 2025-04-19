@@ -34,17 +34,20 @@ This one *asks*:
 
 ## 📁 Structure
 
-- `src/`: Core logic
+- `code/`: Core logic
 - `data/`: Small curated dataset of texts (e.g. Wikipedia, abstracts, blogposts)
 - `notebooks/`: Visual experiments
 - `experiments/`: Different agent runs, logging
 - `README.md`: You are here.
 
-## 🔭 Next step
 
-Start building a minimal baseline agent that can:
-- read 100 texts
-- decide which 10 are most relevant to a target
-- justify its choice
+## 🚀 Quickstart
 
-Let’s build something that learns with direction.
+```bash
+pip install -r requirements.txt
+python main.py
+```
+For visualization:
+```bash
+python visualize_memory.py
+```
