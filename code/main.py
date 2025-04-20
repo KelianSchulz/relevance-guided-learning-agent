@@ -3,6 +3,7 @@ from adaption import filter_relevant_articles_adapted
 from expansion import expanded_memory, save_memory
 from embedding import embed_texts, embed_interest, compute_scores
 from explanation import explain_memory
+from finalize import merge_adapted_and_expanded
 import json
 import os 
 
@@ -40,14 +41,19 @@ if __name__ == "__main__":
     new_goal = goal,
     output_path="data/agent_memory_expanded.json",
     threshold=0.5
+    )
+    
+merge_adapted_and_expanded(
+    adapted_path="data/agent_memory_adapted.json",
+    expanded_path="data/agent_memory_expanded.json",
+    final_path="data/agent_memory_final.json"
 )
-
 # Speichern
-save_memory(expanded, path="data/agent_memory_expanded.json")
+save_memory(expanded, path="data/agent_memory_final.json")
 
 print("\n🔎 Explanation for final memory:\n")
 explain_memory(
-    memory_path="data/agent_memory_expanded.json",
+    memory_path="data/agent_memory_final.json",
     goal=goal
 )
     

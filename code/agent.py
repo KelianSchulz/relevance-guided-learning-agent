@@ -12,7 +12,7 @@ def run_agent(data_path, interest, threshold=0.5):
     scores = compute_scores(embeddings, interest_vec)
 
     top_indices = sorted(range(len(scores)), key=lambda k: scores[k], reverse=True)[:5]
-    print("\n📊 Top 5 relevante Texte:")
+    print("\n📊 Top 5 relevant texts:")
     for i in top_indices:
         print(f"Score: {scores[i]:.3f} | Title: {articles[i]['title']}")
 

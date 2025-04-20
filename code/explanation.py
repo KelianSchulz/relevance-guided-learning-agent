@@ -8,6 +8,7 @@ semantic similarity to the goal.
 Objective: interpretable behavior & transparency.
 """
 from embedding import embed_interest, compute_scores, embed_texts, cosine_similarity
+from explain_keywords import explain_keywords_for_text
 
 import json
 def explain_memory(memory_path, goal):
@@ -17,15 +18,15 @@ def explain_memory(memory_path, goal):
     goal_vec = embed_interest(goal)
     texts = [a["title"] + ". " + a["content"] for a in memory]
     titles = [a["title"] for a in memory]
-    embeddings = embed_texts(texts)
-    scores = compute_scores(embeddings, goal_vec)
+    
+    
 
     print(f"Explanation of memory selection: I chose the following texts because they have a cosine score >= 0.5:")
     for i in range(len(memory)):
-        print(type(embeddings[i]), type(goal_vec))
-        score = cosine_similarity(embeddings[i], goal_vec)
+        
+        score = memory[i]["score"]
         print(f"🧠 {titles[i]}")
-        print(f"→ Relevance: {scores[i]:.3f}")
+        print(f"→ Relevance: {score:.3f}")
         if score > 0.7:
             print("→ Very strong semantic connection to the goal.\n")
         elif score > 0.5:
@@ -34,3 +35,9 @@ def explain_memory(memory_path, goal):
             print("→ Slight thematic proximity, but not dominant.\n")
         else:
             print("→ Hardly any relevant connection. (Why was this stored?)\n")
+        keyword_explanation = explain_keywords_for_text(
+            memory[i]["title"] + ". " + memory[i]["content"], goal
+            )
+
+        print(keyword_explanation)
+        print()  
