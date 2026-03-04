@@ -1,65 +1,8 @@
 # 🧠 Self-Guided Learning Agent – Architecture & Design (v2)
 
----
 
-## 1. Motivation
 
-Many machine learning systems passively process data.  
-This project explores a lightweight learning agent that **actively selects**, **retains**, and **justifies** what it learns, based on a **semantic goal**.  
-The focus is on relevance-guided knowledge selection and **explainability** – laying groundwork for goal-driven, interpretable AI.
-
----
-
-## 2. Problem Statement
-
-**Given:**
-- A corpus of unstructured texts (e.g. Wikipedia-style articles)
-- A semantic target (e.g. "Reinforcement Learning")
-
-**Build an agent that:**
-1. Identifies relevant content
-2. Constructs an internal memory
-3. Adapts when goals change
-4. Expands knowledge if needed
-5. Explains why knowledge was selected
-
----
-
-## 3. System Pipeline
-
-```text
-                ┌────────────┐
-                │  Articles  │
-                └─────┬──────┘
-                      ↓
-               ┌─────────────┐
-               │ run_agent() │  ← Selection
-               └─────┬───────┘
-             memory.json
-                      ↓
-       ┌────────────────────────────┐
-       │ filter_relevant_articles() │ ← Adaption
-       └─────────────┬──────────────┘
-             memory_adapted.json
-                      ↓
-        ┌──────────────────────────┐
-        │ expand_memory_if_needed │ ← Expansion
-        └─────────────┬───────────┘
-             memory_expanded.json
-                      ↓
-    ┌─────────────────────────────────────┐
-    │ merge_adapted_and_expanded()        │ ← Final knowledge state
-    └─────────────────────────────────────┘
-             memory_final.json
-                      ↓
-    ┌─────────────────────────────────────┐
-    │ explain_memory()                    │ ← Explanation
-    └─────────────────────────────────────┘
-```
-
----
-
-## 4. Core Modules
+## 1. Core Modules
 
 | Module                | Role                                                                 |
 |-----------------------|----------------------------------------------------------------------|
@@ -74,7 +17,7 @@ The focus is on relevance-guided knowledge selection and **explainability** – 
 
 ---
 
-## 5. Example Output (v2)
+## 2. Example Output (v2)
 
 ```text
 🧠 Deep learning  
@@ -86,7 +29,7 @@ which are strongly related to the goal "Reinforcement Learning".
 
 ---
 
-## 6. Explainability: Score + Concept Level
+## 3. Explainability: Score + Concept Level
 
 - Cosine score: sentence-level embedding comparison
 - Conceptual explanation: keyword extraction + semantic similarity
@@ -94,7 +37,7 @@ which are strongly related to the goal "Reinforcement Learning".
 
 ---
 
-## 7. Limitations & Next Steps
+## 4. Limitations & Next Steps
 
 | Limit | Opportunity |
 |-------|-------------|
@@ -105,10 +48,9 @@ which are strongly related to the goal "Reinforcement Learning".
 
 ---
 
-## 8. Author & Vision
+## 8. Author 
 
 Built by Kelian Schulz  
-As part of an independent research journey toward research-focused AI  
-(e.g. future application at Bosch Center for Artificial Intelligence, BCAI)
+
 
 Goal: Understand and design agents that not only learn – but explain, reflect, and grow.
