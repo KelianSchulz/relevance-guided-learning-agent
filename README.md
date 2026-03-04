@@ -1,26 +1,5 @@
 # 🧠 Relevance-Guided Learning Agent
 
-A modular AI system that **decides what it wants to learn**,  
-based on semantic relevance to a given goal.  
-It selects, adapts, expands, and **explains** its own memory –  
-not just by scores, but by meaning.
-
----
-
-## 🌱 Motivation
-
-Most models passively consume training data.  
-This one asks:
-
-> “What should I learn – and why?”
-
-Inspired by:
-- Curriculum learning
-- Cognitive memory systems
-- Attention-based selection
-- Explainable AI & concept-based reasoning
-
----
 
 ## 🔍 What It Does
 
@@ -98,5 +77,4 @@ python visualize_memory.py
 ## ✍️ Author
 
 Built by **Kelian Schulz**  
-Project goal: Build research-ready, interpretable agent architectures  
-with a long-term view on memory-guided learning and symbolic AI integration.
+
